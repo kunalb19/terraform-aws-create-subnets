@@ -4,6 +4,8 @@ data "aws_vpc" "aws_vpc" {
     values = [var.vpc_id]
   }
 }
+
+############################################################
 resource "aws_subnet" "aws_subnet" {
   count                   = var.subnet_count
   cidr_block              = cidrsubnet(data.aws_vpc.aws_vpc.cidr_block, 8, count.index + var.subnet_series) # 10.10.0.0/24
